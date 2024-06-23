@@ -1,23 +1,23 @@
 from django.db import models
 
-# Create your models here.
+# Creat e your models here.
 
 
-class User(models.Model):
+class Employee(models.Model):
     name = models.CharField(max_length=30)
     email_address = models.EmailField()
-    photo = models.URLField
+    photo = models.URLField()
     birth_date = models.DateField()
     works_full_time = models.BooleanField()
-    created_in = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
 
 
 class Department(models.Model):
 
-    class LocationChoices(models.TextChoices):
+    class Location(models.TextChoices):
         VARNA = 'Varna', 'Varna'
         BURGAS = 'Burgas', 'Burgas'
-        PLOVDIV = 'Plovidv', 'Plovdiv'
+        PLOVDIV = 'Plovdiv', 'Plovdiv'
         SOFIA = 'Sofia', 'Sofia'
 
     code = models.CharField(
@@ -31,16 +31,15 @@ class Department(models.Model):
     )
     employees_count = models.PositiveIntegerField(
         default=1,
-        verbose_name= 'Employees Count'
+        verbose_name='Employees Count'
     )
 
     location = models.CharField(
         max_length=20,
-        choices=LocationChoices,
-        Null=True
+        choices=Location,
     )
+
     last_edited_on = models.DateTimeField(
-        auto_now_add=True,
+        auto_now=True,
         editable=False
     )
-    
